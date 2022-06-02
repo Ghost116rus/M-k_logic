@@ -1,13 +1,28 @@
 #include "Calculate.h"
 
-int k = 3;
-int n = 2;
+int k = 5;
+int n = 1;
 int _size = pow(k, n);
 std::stack <int*> _stack;
 
-
-
 using namespace std;
+
+bool check(string str)
+{
+    int open_backets = 0; int close_backet = 0;
+    bool alert = false; int temp = -1;
+    for (size_t i = 0; i < str.size(); i++)
+    {
+        if (str[i] == '(') { open_backets++; }
+        else if (str[i] == ')') { alert = false; close_backet++; }
+        else if (TryParse(str[i])) { alert = true; }
+        else if (str[i] == '*') { alert = false; }
+        else if (str[i] == 'x' || str[i] == 'y' || str[i] == '-') { if (alert) { std::cout << "После числа возможно лишь '*' или ')'\n"; return false; } }
+        else { std::cout << "Найден неопознанный символ!\n"; return false; }
+    }
+    if (open_backets != close_backet) { std::cout << "Первичный осмотр показал проблему в скобках\n"; return false; }
+}
+
 
 void analyze(string analytic_form)
 {
@@ -66,14 +81,24 @@ void m_logic_programm()
     getline(cin, input);
 
     clean_from_space(input);
-    string copy = input;
 
-    analyze(copy);
+    if (check(input))
+    {
+        analyze(input);
+
+        print_Res(input);
+
+        int* result = _stack.top();
+        _stack.pop();
+        delete result;
+    }
+    else
+    {
+        std::cout << "Неудачный ввод!\n";
+    }
 
 
-    print_Res(input);
 
-    int* result = _stack.top();
-    _stack.pop();
-    delete result;
+
+
 }

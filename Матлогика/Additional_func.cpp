@@ -7,6 +7,21 @@ extern int n;
 extern int _size;
 extern std::stack <int*> _stack;
 
+bool TryParse(char ch)
+{
+    try
+    {
+        std::string temp;
+        temp += ch;
+        std::stoi(temp);
+        return true;
+    }
+    catch (const std::exception& nothing)
+    {
+        return false;
+    }
+}
+
 bool TryParse(std::string str, int& a)
 {
     try
