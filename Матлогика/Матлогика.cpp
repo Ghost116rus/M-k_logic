@@ -2,14 +2,16 @@
 //
 
 #include <iostream>
-#include <iomanip>
-#include <Windows.h>
 #include <string>
-#include <vector>
+#include <stack>
 
 using namespace std;
 
-int k = -1;
+int k = 3;
+int n = 2;
+int _size = pow(k,n);
+
+stack <int*> _stack;
 
 void unary_negation(int* table)
 {
@@ -69,11 +71,21 @@ void calculate(string analytic_form)
 
     if (analytic_form[0] == 'x')
     {
-
+        int* arr = new int[_size];
+        for (size_t i = 0; i < _size; i++)
+        {
+            arr[i] = i / k;
+        }
+        _stack.push(arr);
     }
     else if (analytic_form[0] == 'y')
     {
-
+        int* arr = new int[_size];
+        for (size_t i = 0; i < _size; i++)
+        {
+            arr[i] = i % k;
+        }
+        _stack.push(arr);
     }
 
 
