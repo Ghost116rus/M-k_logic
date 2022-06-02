@@ -139,7 +139,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Additional_func.cpp" />
+    <ClCompile Include="Calculate.cpp" />
+    <ClCompile Include="Logic.cpp" />
+    <ClCompile Include="Main_program.cpp" />
     <ClCompile Include="Матлогика.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Additional_func.h" />
+    <ClInclude Include="Calculate.h" />
+    <ClInclude Include="Header.h" />
+    <ClInclude Include="Logic.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
