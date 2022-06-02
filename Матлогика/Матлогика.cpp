@@ -42,15 +42,43 @@ void calculate(string analytic_form)
 
         index_start = analytic_form.find('(');
     }
-    if (analytic_form != "")
+
+    int index_multiplacation = -1;
+    index_multiplacation = analytic_form.find('*');
+    
+    if (index_multiplacation != -1)
     {
-        std::cout << analytic_form << std::endl;
+        string front_part = analytic_form.substr(0, index_multiplacation);
+        string end_part = analytic_form.substr(index_multiplacation + 1, analytic_form.size() - index_multiplacation - 1);
+        analytic_form = "*";
+        if (front_part != "") { calculate(front_part); }
+        if (end_part != "") { calculate(end_part); }
+
+    }
+
+    int index_negotioation = -1;
+    index_negotioation = analytic_form.find('-');
+
+    if (index_negotioation != -1)
+    {
+        string end_part = analytic_form.substr(index_negotioation + 1, analytic_form.size() - index_negotioation - 1);
+        analytic_form = "-";
+        if (end_part != "") { calculate(end_part); }
+    }
+
+
+    if (analytic_form[0] == 'x')
+    {
+
+    }
+    else if (analytic_form[0] == 'y')
+    {
+
     }
 
 
 }
-// (hello(was is was)(do))(maybe)
-// hello dear (really (i print it there (and don't think about) and ((wow)))) (hello)
+
 
 int main()
 {
@@ -66,3 +94,6 @@ int main()
 
 
 }
+// (hello(was is was)(do))(maybe)
+// hello dear (really (i print it there (and don't think about) and ((wow)))) (hello)
+// -((-x)*((x*(-y))*x)*(-1))
