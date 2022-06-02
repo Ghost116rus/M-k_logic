@@ -1,7 +1,7 @@
 #include "Calculate.h"
 
 int k = 3;
-int n = 1;
+int n = 2;
 int _size = pow(k, n);
 std::stack <int*> _stack;
 
@@ -65,17 +65,15 @@ void m_logic_programm()
     string input; cout << "¬ведите функцию: ";
     getline(cin, input);
 
+    clean_from_space(input);
+    string copy = input;
+
+    analyze(copy);
 
 
-    analyze(input);
+    print_Res(input);
 
-
-
-    int* temp = _stack.top();
-
-    cout << endl;
-    for (size_t i = 0; i < _size; i++)
-    {
-        cout << temp[i] << endl;
-    }
+    int* result = _stack.top();
+    _stack.pop();
+    delete result;
 }
