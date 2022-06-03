@@ -2,10 +2,10 @@
 #include "Header.h"
 #include <iomanip>
 
-extern int k;
-extern int n;
-extern int _size;
-extern std::stack <int*> _stack;
+extern int g_k;
+extern int g_n;
+extern int g_size;
+extern std::stack <int*> g_stack;
 
 bool TryParse(char ch)
 {
@@ -97,27 +97,27 @@ void print_Hat()
 
 void print_Res(std::string expression)
 {
-    int* result = _stack.top();
+    int* result = g_stack.top();
     int temp = expression.size() % 2;
     int width1 = (expression.size() + temp) / 2;
     int width2 = (expression.size() - temp) / 2;
 
     std::cout << "\n Результат работы программы:\n";
-    if (n == 1) 
+    if (g_n == 1) 
     { 
         std::cout << "| X |  " << expression << "  |\n";
-        for (size_t i = 0; i < _size; i++)
+        for (size_t i = 0; i < g_size; i++)
         {
             std::cout << "| " << i << " |  " << std::setw(width1) << result[i] << std::setw(width2) << "" << "  |\n";
         }
 
     }
-    else if (n == 2) 
+    else if (g_n == 2) 
     {
         std::cout << "| X | Y |  " << expression << "  |\n";
-        for (size_t i = 0; i < _size; i++)
+        for (size_t i = 0; i < g_size; i++)
         {
-            std::cout << "| " << i / k << " | " << i % k << " |  " << std::setw(width1) << result[i] << std::setw(width2) << "" << "  |\n";
+            std::cout << "| " << i / g_k << " | " << i % g_k << " |  " << std::setw(width1) << result[i] << std::setw(width2) << "" << "  |\n";
         }
 
     }

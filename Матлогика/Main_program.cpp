@@ -1,9 +1,9 @@
 #include "Calculate.h"
 
-int k = 5;
-int n = 1;
-int _size;
-std::stack <int*> _stack;
+int g_k = 5;
+int g_n = 1;
+int g_size;
+std::stack <int*> g_stack;
 
 using namespace std;
 
@@ -87,12 +87,12 @@ void m_logic_programm()
     while (user_opinion)
     {
         cout << "¬ведите число k: ";
-        k = getValue(15, "¬ведите число k: ");
+        g_k = getValue(15, "¬ведите число k: ");
 
         cout << "¬ведите число n (1 или 2): ";
-        n = getValue(15, "¬ведите число k: ");
+        g_n = getValue(15, "¬ведите число k: ");
 
-        _size = pow(k, n);
+        g_size = pow(g_k, g_n);
 
         std::cin.ignore(32767, '\n');
         string input; cout << "¬ведите функцию: ";
@@ -108,8 +108,8 @@ void m_logic_programm()
         {
             analyze(input);
             print_Res(input);
-            int* result = _stack.top();
-            _stack.pop();
+            int* result = g_stack.top();
+            g_stack.pop();
             delete result;
         }
         catch (const std::exception&)

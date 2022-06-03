@@ -1,41 +1,41 @@
 #include "Calculate.h"
 
-extern int k;
-extern int n;
-extern int _size;
-extern std::stack <int*> _stack;
+extern int g_k;
+extern int g_n;
+extern int g_size;
+extern std::stack <int*> g_stack;
 
 void unary_negation_func()
 {
-    int* result = _stack.top();
-    _stack.pop();
+    int* result = g_stack.top();
+    g_stack.pop();
 
-    for (size_t i = 0; i < _size; i++)
+    for (size_t i = 0; i < g_size; i++)
     {
         result[i] = unary_negation(result[i]);
     }
 
-    _stack.push(result);
+    g_stack.push(result);
 }
 
 
 void multiplicate_func()
 {
-    int* res_table1 = _stack.top();
-    _stack.pop();
+    int* res_table1 = g_stack.top();
+    g_stack.pop();
 
-    int* res_table2 = _stack.top();
-    _stack.pop();
+    int* res_table2 = g_stack.top();
+    g_stack.pop();
 
-    int* result = new int[_size];
+    int* result = new int[g_size];
 
-    for (size_t i = 0; i < _size; i++)
+    for (size_t i = 0; i < g_size; i++)
     {
         result[i] = multiplicate(res_table1[i], res_table2[i]);
     }
     delete res_table1; delete res_table2;
 
-    _stack.push(result);
+    g_stack.push(result);
 }
 
 
@@ -54,40 +54,40 @@ void calculate(std::string symbol)
         int* arr = nullptr;
         if (symbol[0] == 'x')
         {
-            arr = new int[_size];
-            for (size_t i = 0; i < _size; i++)
+            arr = new int[g_size];
+            for (size_t i = 0; i < g_size; i++)
             {
-                arr[i] = i / (_size / k);
+                arr[i] = i / (g_size / g_k);
             }
         }
         else if (symbol[0] == 'y')
         {
-            arr = new int[_size];
-            for (size_t i = 0; i < _size; i++)
+            arr = new int[g_size];
+            for (size_t i = 0; i < g_size; i++)
             {
-                arr[i] = i % k;
+                arr[i] = i % g_k;
             }
 
         }
         int temp = 0;
         if (TryParse(symbol, temp))
         {
-            if (temp > k - 1)
+            if (temp > g_k - 1)
             {
                 std::cout << "Найдено число больше k-1\n";
                 throw std::exception();
             }
             else
             {
-                arr = new int[_size];
-                for (size_t i = 0; i < _size; i++)
+                arr = new int[g_size];
+                for (size_t i = 0; i < g_size; i++)
                 {
                     arr[i] = temp;
                 }
             }
 
         }
-        if (arr) { _stack.push(arr); }
+        if (arr) { g_stack.push(arr); }
 
     }
 
