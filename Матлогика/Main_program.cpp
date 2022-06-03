@@ -2,13 +2,15 @@
 
 int k = 5;
 int n = 1;
-int _size = pow(k, n);
+int _size;
 std::stack <int*> _stack;
 
 using namespace std;
 
 bool check(string str)
 {
+    if (str == "") { std::cout << "Введена пустая строка!\n"; return false; }
+
     int open_backets = 0; int close_backet = 0;
     bool alert = false; int temp = -1;
     for (size_t i = 0; i < str.size(); i++)
@@ -77,27 +79,47 @@ void analyze(string analytic_form)
 
 void m_logic_programm()
 {
-    string input; cout << "Введите функцию: ";
-    getline(cin, input);
+    print_Hat();
+    int user_opinion = -1;
+    cout << "Для начала работы нажмите 1, если хотите выйти - 0\n Введите: ";
+    user_opinion = getValue(16, "Для начала работы нажмите 1, если хотите выйти - 0\n");
 
-    clean_from_space(input);
-
-    if (check(input))
+    while (user_opinion)
     {
-        analyze(input);
+        cout << "Введите число k: ";
+        k = getValue(15, "Введите число k: ");
 
-        print_Res(input);
+        cout << "Введите число n (1 или 2): ";
+        n = getValue(15, "Введите число k: ");
 
-        int* result = _stack.top();
-        _stack.pop();
-        delete result;
+        _size = pow(k, n);
+
+        std::cin.ignore(32767, '\n');
+        string input; cout << "Введите функцию: ";
+        getline(cin, input);
+
+        if (input == "exit") { break; }
+
+        clean_from_space(input);
+
+        if (!check(input)) { std::cout << "Неудачный ввод!\nЦикл будет перезапущен, для выхода вводе функции напишите \"exit\"\n"; continue; }
+
+        try
+        {
+            analyze(input);
+            print_Res(input);
+            int* result = _stack.top();
+            _stack.pop();
+            delete result;
+        }
+        catch (const std::exception&)
+        {
+            std::cout << "\nВведенные данные некорректны!\n";
+        }
+
+        cout << "Для продолжения работы нажмите 1, если хотите выйти - 0\n Введите: ";
+        user_opinion = getValue(16, "Для начала работы нажмите 1, если хотите выйти - 0\n");
     }
-    else
-    {
-        std::cout << "Неудачный ввод!\n";
-    }
-
-
 
 
 

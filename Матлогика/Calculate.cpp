@@ -19,7 +19,6 @@ void unary_negation_func()
 }
 
 
-
 void multiplicate_func()
 {
     int* res_table1 = _stack.top();
@@ -73,11 +72,20 @@ void calculate(std::string symbol)
         int temp = 0;
         if (TryParse(symbol, temp))
         {
-            arr = new int[_size];
-            for (size_t i = 0; i < _size; i++)
+            if (temp > k - 1)
             {
-                arr[i] = temp;
+                std::cout << "Найдено число больше k-1\n";
+                throw std::exception();
             }
+            else
+            {
+                arr = new int[_size];
+                for (size_t i = 0; i < _size; i++)
+                {
+                    arr[i] = temp;
+                }
+            }
+
         }
         if (arr) { _stack.push(arr); }
 
