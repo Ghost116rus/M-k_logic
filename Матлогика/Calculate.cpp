@@ -92,3 +92,53 @@ void calculate(std::string symbol)
     }
 
 }
+
+void make_first_form()
+{
+    int* res_table1 = g_stack.top();
+    bool printed = false;
+
+    std::cout << "Первая форма, аналог СДНФ: ";
+
+    if (g_n == 1)
+    {
+        for (size_t i = 0; i < g_k; i++)
+        {
+            if (res_table1[i] != 0)
+            {   
+                if (printed) { std::cout << " & "; }
+
+                if (res_table1[i] != g_k - 1)
+                {
+                    std::cout << res_table1[i] << "&";
+                }
+                std::cout << "J_" << i << "(x)";
+                printed = true;
+            }
+        }
+    }
+    else
+    {
+        int iterator = 0;
+        for (size_t i = 0; i < g_k; i++)
+        {
+            for (size_t j = 0; j < g_k; j++)
+            {
+                if (res_table1[iterator] != 0)
+                {
+                    if (printed) { std::cout << " & "; }
+                    if (res_table1[iterator] != g_k - 1)
+                    {
+                        std::cout << res_table1[iterator] << "&";
+                    }
+                    std::cout << "J_" << i << "(x)&" << "J_" << j << "(y)";
+                    printed = true;
+                }
+                iterator++;
+            }
+        }
+    }
+
+    if (!printed) { std::cout << "В таблице все нули!\n"; }
+    std::cout << std::endl;
+}

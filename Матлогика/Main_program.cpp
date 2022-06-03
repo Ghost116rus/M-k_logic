@@ -19,6 +19,7 @@ bool check(string str)
         else if (str[i] == ')') { alert = false; close_backet++; }
         else if (TryParse(str[i])) { alert = true; }
         else if (str[i] == '*') { alert = false; }
+        else if (str[i] == 'y' && g_n == 1) { std::cout << "Обнаружен y при n = 1!\n"; return false; }
         else if (str[i] == 'x' || str[i] == 'y' || str[i] == '-') { if (alert) { std::cout << "После числа возможно лишь '*' или ')'\n"; return false; } }
         else { std::cout << "Найден неопознанный символ!\n"; return false; }
     }
@@ -81,8 +82,6 @@ void m_logic_programm()
 {
     print_Hat();
     int user_opinion = -1;
-    cout << "Для начала работы нажмите 1, если хотите выйти - 0\n Введите: ";
-    user_opinion = getValue(16, "Для начала работы нажмите 1, если хотите выйти - 0\n");
 
     while (user_opinion)
     {
@@ -90,7 +89,7 @@ void m_logic_programm()
         g_k = getValue(15, "Введите число k: ");
 
         cout << "Введите число n (1 или 2): ";
-        g_n = getValue(15, "Введите число k: ");
+        g_n = getValue(17, "Введите число k: ");
 
         g_size = pow(g_k, g_n);
 
@@ -102,12 +101,16 @@ void m_logic_programm()
 
         clean_from_space(input);
 
-        if (!check(input)) { std::cout << "Неудачный ввод!\nЦикл будет перезапущен, для выхода вводе функции напишите \"exit\"\n"; continue; }
+        if (!check(input)) { std::cout << "\nНеудачный ввод!\nЦикл будет перезапущен, для выхода вводе функции напишите \"exit\"\n\n"; continue; }
 
         try
         {
             analyze(input);
             print_Res(input);
+
+            make_first_form();
+
+
             int* result = g_stack.top();
             g_stack.pop();
             delete result;
@@ -117,7 +120,7 @@ void m_logic_programm()
             std::cout << "\nВведенные данные некорректны!\n";
         }
 
-        cout << "Для продолжения работы нажмите 1, если хотите выйти - 0\n Введите: ";
+        cout << "\nДля продолжения работы нажмите 1, если хотите выйти - 0\n Введите: ";
         user_opinion = getValue(16, "Для начала работы нажмите 1, если хотите выйти - 0\n");
     }
 

@@ -5,3 +5,4 @@
 
 
 void calculate(std::string symbol);
+void make_first_form();
