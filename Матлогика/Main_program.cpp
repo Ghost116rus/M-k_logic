@@ -1,4 +1,6 @@
 #include "Calculate.h"
+#include "Save_set.h"
+#include <vector>
 
 int g_k = 5;
 int g_n = 1;
@@ -78,6 +80,8 @@ void analyze(string analytic_form)
 }
 
 
+
+
 void m_logic_programm()
 {
     print_Hat();
@@ -109,6 +113,10 @@ void m_logic_programm()
             print_Res(input);
 
             make_first_form();
+
+            bool check = false;
+
+            save_set(check);
 
 
             int* result = g_stack.top();

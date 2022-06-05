@@ -143,6 +143,7 @@
     <ClCompile Include="Calculate.cpp" />
     <ClCompile Include="Logic.cpp" />
     <ClCompile Include="Main_program.cpp" />
+    <ClCompile Include="Save_set.cpp" />
     <ClCompile Include="Матлогика.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -150,6 +151,7 @@
     <ClInclude Include="Calculate.h" />
     <ClInclude Include="Header.h" />
     <ClInclude Include="Logic.h" />
+    <ClInclude Include="Save_set.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

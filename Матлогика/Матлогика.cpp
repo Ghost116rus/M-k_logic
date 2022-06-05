@@ -4,9 +4,11 @@
 
 
 
+
 int main()
 {
     setlocale(LC_ALL, "ru");
 
     m_logic_programm();    
+
 }
