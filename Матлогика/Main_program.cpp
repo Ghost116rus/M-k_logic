@@ -105,7 +105,7 @@ void m_logic_programm()
 
         clean_from_space(input);
 
-        if (!check(input)) { std::cout << "\nНеудачный ввод!\nЦикл будет перезапущен, для выхода вводе функции напишите \"exit\"\n\n"; continue; }
+        if (!check(input)) { std::cout << "\nНеудачный ввод!\nЦикл будет перезапущен, для выхода в вводе функции напишите \"exit\"\n\n"; continue; }
 
         try
         {
@@ -115,7 +115,6 @@ void m_logic_programm()
             make_first_form();
 
             bool check = false;
-
             save_set(check);
 
 
